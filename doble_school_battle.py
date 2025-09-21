@@ -120,13 +120,23 @@ def init_poks():
         Pokemon('ペルシアン', '#セイジ', PType.NONE,     80, 'テクニシャン',   20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
         Pokemon('シロデスナ', '#セイジ', PType.NONE,     80, 'みずがため',     20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
         Pokemon('サンドパンA', '#セイジ', PType.NONE,    80, 'ゆきがくれ',     20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
-        Pokemon('ライチュウ', '#セイジ', PType.ELECTRIC, 81, 'せいでんき',     25, 252, 0, 0, 0, 0, 0,   'がんばりや', 'なし')
+        Pokemon('ライチュウ', '#セイジ', PType.ELECTRIC, 81, 'せいでんき',     25, 252, 0, 0, 0, 0, 0,   'がんばりや', 'なし'),
 
         #66 クラベル
-        #Pokemon('', '#クラベル', PType.NONE,   80, '',        20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
+        Pokemon('ヤレユータン', '#クラベル', PType.NONE,   80, 'せいしんりょく',  20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
+        Pokemon('ユキノオー',   '#クラベル', PType.NONE,   80, 'ゆきふらし',      20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
+        Pokemon('ポットデス',   '#クラベル', PType.NONE,   80, 'くだけるよろい',  20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
+        Pokemon('モロバレル',   '#クラベル', PType.NONE,   80, 'ほうし',         20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
+        Pokemon('ヘルガー',    '#クラベル', PType.NONE,    80, 'もらいび',       20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
+        Pokemon('ウェーニバル', '#クラベル', PType.WATER,  81, 'げきりゅう',     25, 252, 0, 0, 0, 0, 0,   'がんばりや', 'なし'),
 
         #72 ハッサク
-        #Pokemon('', '#ハッサク', PType.NONE,   80, '',        20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
+        Pokemon('ジュラルドン', '#ハッサク', PType.NONE,   82, 'すじがねいり',    20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
+        Pokemon('オンバーン',   '#ハッサク', PType.NONE,   82, 'すりぬけ',        20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
+        Pokemon('オノノクス',   '#ハッサク', PType.NONE,   82, 'かたやぶり',      20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
+        Pokemon('ドラミドロ',   '#ハッサク', PType.NONE,   82, 'どくのトゲ',      20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
+        Pokemon('カイリュー',   '#ハッサク', PType.NONE,   82, 'せいしんりょく',  20,  0, 0, 0, 0, 0, 0,    'がんばりや', 'なし'),
+        Pokemon('セグレイブ',   '#ハッサク', PType.DRAGON, 83, 'ねつこうかん',    25, 252, 0, 0, 0, 0, 0,   'がんばりや', 'なし')
 
     ]
 
@@ -285,14 +295,20 @@ def damage_from_enemy():
     try_emove_each(epoks[61], 'ふいうち', MCat.PHYSICAL, PType.DARK, 70, 1)
     try_emove_each(epoks[62], 'ねこだまし', MCat.PHYSICAL, PType.NORMAL, 40, 1)
     
-#    print ('-----クラベル-----')
-#    try_emove_each(epok[10], 'サイコキネシス', MCat.SPECIAL, PType.PSYCHIC, 90, 1)
-#    try_emove_each(epok[10], '10まんボルト', MCat.SPECIAL, PType.ELECTRIC, 90, 1)
-#    try_emove_each(epok[10], 'イカサマ', MCat.PHYSICAL, PType.DARK, 95, 1)
-#    print ('-----ハッサク-----')
-#    try_emove_each(epok[12], 'ボディプレス', MCat.PHYSICAL, PType.FIGHTING, 80, 1)
-#    try_emove_each(epok[12], '10まんボルト', MCat.SPECIAL, PType.ELECTRIC, 90, 1)
-#    try_emove_each(epok[12], 'りゅうせいぐん', MCat.SPECIAL, PType.DRAGON, 130, 1)
+    print ('-----クラベル-----')
+    try_emove_each(epoks[66], 'サイコキネシス', MCat.SPECIAL, PType.PSYCHIC, 90, 1)
+    try_emove_each(epoks[66], '10まんボルト', MCat.SPECIAL, PType.ELECTRIC, 90, 1)
+    try_emove_each(epoks[66], 'イカサマ', MCat.PHYSICAL, PType.DARK, 95, 1)
+
+    try_emove_each(epoks[67], 'こおりのつぶて', MCat.PHYSICAL, PType.ICE, 40, 1)
+    try_emove_each(epoks[70], 'ふいうち', MCat.PHYSICAL, PType.DARK, 70, 1)
+
+    print ('-----ハッサク-----')
+    try_emove_each(epoks[72], 'ボディプレス', MCat.PHYSICAL, PType.FIGHTING, 80, 1)
+    try_emove_each(epoks[72], '10まんボルト', MCat.SPECIAL, PType.ELECTRIC, 90, 1)
+    try_emove_each(epoks[72], 'りゅうせいぐん', MCat.SPECIAL, PType.DRAGON, 130, 1)
+    try_emove_each(epoks[76], 'しんそく', MCat.PHYSICAL, PType.NORMAL, 80, 1)
+    try_emove_each(epoks[77], 'こおりのつぶて', MCat.PHYSICAL, PType.ICE, 40, 1)
 
 
 
