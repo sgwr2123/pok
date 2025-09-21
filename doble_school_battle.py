@@ -278,10 +278,13 @@ def damage_from_enemy():
     try_emove_each(epoks[58], 'バレットパンチ', MCat.PHYSICAL, PType.STEEL, 40, 1)
 
     print ('-----セイジ-----')
-    try_emove_each(epok[5], 'サイコキネシス', MCat.SPECIAL, PType.PSYCHIC, 90, 1)
-    try_emove_each(epok[5], 'くさむすび', MCat.SPECIAL, PType.GRASS, 80, 1) # power depends on weight, doble is 58kg
-    try_emove_each(epok[5], 'シャドーボール', MCat.SPECIAL, PType.GHOST, 80, 1)
-#    
+    try_emove_each(epoks[60], 'サイコキネシス', MCat.SPECIAL, PType.PSYCHIC, 90, 1)
+    try_emove_each(epoks[60], 'くさむすび', MCat.SPECIAL, PType.GRASS, 80, 1) # power depends on weight, doble is 58kg
+    try_emove_each(epoks[60], 'シャドーボール', MCat.SPECIAL, PType.GHOST, 80, 1)
+
+    try_emove_each(epoks[61], 'ふいうち', MCat.PHYSICAL, PType.DARK, 70, 1)
+    try_emove_each(epoks[62], 'ねこだまし', MCat.PHYSICAL, PType.NORMAL, 40, 1)
+    
 #    print ('-----クラベル-----')
 #    try_emove_each(epok[10], 'サイコキネシス', MCat.SPECIAL, PType.PSYCHIC, 90, 1)
 #    try_emove_each(epok[10], '10まんボルト', MCat.SPECIAL, PType.ELECTRIC, 90, 1)
