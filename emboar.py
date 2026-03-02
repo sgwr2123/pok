@@ -11,6 +11,7 @@ from pklib.pok import SIDX
 from pklib.pok import PType
 from pklib.pok import Pokemon
 from pklib.pok import MCat
+from pklib.pok import PokBstat
 
 def init_poks():
     global epoks
@@ -23,16 +24,16 @@ def init_poks():
     #    Pokemon('ウツボット', PType.GRASS,  PType.POISON,  PType.NONE,      80,   80,105, 65,100, 70, 70,  'ようりょくそ', 20,   0, 0, 0, 0, 0, 0, -1, -1, 'なし'),
     #    Pokemon('バサギリ',   PType.BUG,    PType.ROCK,    PType.NONE,      80,   70,135, 95, 45, 70, 85,  'きれあじ', 20,   0, 0, 0, 0, 0, 0, -1, -1, 'なし'),
 
-        Pokemon('フシギバナ', '#NPC', PType.NONE, 99, 'しんりょく',   31, 0, 0, 0, 0, 0, 0, 'がんばりや', 'なし'),
-        Pokemon('ジュカイン', '#NPC', PType.NONE, 99, 'しんりょく',   31, 0, 0, 0, 0, 0, 0, 'がんばりや', 'なし'),
-        Pokemon('ブリガロン', '#NPC', PType.NONE, 99, 'しんりょく',   31, 0, 0, 0, 0, 0, 0, 'がんばりや', 'なし')
+        Pokemon('カメックス', '#NPC', PType.NONE, 99, 'げきりゅう',   31, 0, 0, 0, 0, 0, 0, 'がんばりや', 'なし'),
+        Pokemon('ラグラージ', '#NPC', PType.NONE, 99, 'げきりゅう',   31, 0, 0, 0, 0, 0, 0, 'がんばりや', 'なし'),
+        Pokemon('ゲッコウガ', '#NPC', PType.NONE, 99, 'げきりゅう',   31, 0, 0, 0, 0, 0, 0, 'がんばりや', 'なし')
 
     ]
 
     mpoks = [
-        Pokemon('オーダイル', '#AD', PType.NONE, 100, 'げきりゅう',     31, 4, 252,  0, 0, 252, 0,   'いじっぱり', 'かいがらのすず'),
-        Pokemon('メガオーダイル', '#AD', PType.NONE, 100, 'げきりゅう', 31, 4, 252, 0, 0, 252, 0,   'いじっぱり', 'オーダイルナイト'),
-        Pokemon('メガオーダイル', '#CD', PType.NONE, 100, 'げきりゅう', 31, 4, 0,0, 252, 252, 0,   'ひかえめ', 'オーダイルナイト')
+        Pokemon('エンブオー', '#AD', PType.NONE, 100, 'もうか',     31, 4, 252,  0, 0, 252, 0,   'いじっぱり', 'かいがらのすず'),
+        Pokemon('メガエンブオー', '#AD', PType.NONE, 100, 'もうか', 31, 4, 252, 0, 0, 252, 0,   'いじっぱり', 'オーダイルナイト'),
+        Pokemon('メガエンブオー', '#HA', PType.NONE, 100, 'もうか', 31, 252, 252,0, 0, 4, 0,   'いじっぱり', 'オーダイルナイト')
 
      ]
 
@@ -46,6 +47,10 @@ def init_poks():
         x.print_stat()
 
 
+def try_move_one(mpok, epok, mname, mcat, mtyp, mpower, scale):
+
+    (d, f) = mpok.damage_to(epok, mname, mcat, mtyp, mpower, scale, 1)
+    print ('    %-20s (%-10s %u) %s damage = %u (x%.3f), %u %% of HP' % (mname, PokBstat.type2Str[mtyp], mpower, epok.getName(), d, f, int(d*100/epok.get_stat(SIDX.H))))
 
 def try_move_each(mpok, mname, mcat, mtyp, mpower, scale):
 
@@ -59,11 +64,15 @@ def try_move(mpok, mname, mcat, mtyp, mpower, scale):
 
 def damage_to_enemy():
     for i in range(3):
-        try_move(mpoks[i], 'こおりのキバ', MCat.PHYSICAL, PType.ICE, 65, 0.7*1.3)
-        try_move(mpoks[i], 'つららばり', MCat.PHYSICAL, PType.ICE, 125, 0.7*1.3)
-        try_move(mpoks[i], 'れいとうビーム', MCat.SPECIAL, PType.ICE, 90, 0.7*1.3)
-        try_move(mpoks[i], 'ふぶき', MCat.SPECIAL, PType.ICE, 110, 0.7*1.3)
-        try_move(mpoks[i], 'アクアジェット', MCat.PHYSICAL, PType.WATER, 30, 0.7*1.2)
+        for j in range(3):
+            print('%s の %s への攻撃' % (mpoks[i].getName(), epoks[j].getName()))
+            try_move_one(mpoks[i], epoks[j], 'くさわけ', MCat.PHYSICAL, PType.GRASS, 40, 0.7*1.3)
+            try_move_one(mpoks[i], epoks[j], 'ソーラーブレード', MCat.PHYSICAL, PType.GRASS, 125, 0.7*1.3)
+            try_move_one(mpoks[i], epoks[j], 'かみなりパンチ', MCat.PHYSICAL, PType.ELECTRIC, 75, 0.7*1.3)
+            try_move_one(mpoks[i], epoks[j], 'ワイルドボルト', MCat.PHYSICAL, PType.ELECTRIC, 90, 0.7*1.3)
+            try_move_one(mpoks[i], epoks[j], 'ドレインパンチ', MCat.PHYSICAL, PType.FIGHTING, 75, 0.7*1.2)
+            try_move_one(mpoks[i], epoks[j], 'インファイト',   MCat.PHYSICAL, PType.FIGHTING, 120, 0.7*1.2)
+            try_move_one(mpoks[i], epoks[j], 'あなをほる',     MCat.PHYSICAL, PType.GROUND, 80, 0.7*1.2)
 
     
 
@@ -96,25 +105,26 @@ def try_emove_each(epok, mname, mcat, mtyp, mpower, scale):
 def damage_from_enemy():
     print ("**************敵からの攻撃 ***************")
 
-    print ('-----フシギバナ-----')
-    try_emove_each(epoks[0], 'ハードプラント', MCat.SPECIAL, PType.GRASS, 150, 1)
-    try_emove_each(epoks[0], 'ギガドレイン', MCat.SPECIAL, PType.GRASS, 75, 1)
-    try_emove_each(epoks[0], 'ソーラービーム', MCat.SPECIAL, PType.GRASS, 120, 1)
+    print ('-----カメックス-----')
+    try_emove_each(epoks[0], 'ハイドロカノン', MCat.SPECIAL, PType.WATER, 150, 0.7) # 2.5s / 0.83s / 20s
+    try_emove_each(epoks[0], 'なみのり',      MCat.SPECIAL, PType.WATER, 90, 0.7)  # 1.33s / 1.77s / 8s
+    try_emove_each(epoks[0], 'ふぶき',        MCat.SPECIAL, PType.ICE, 110, 0.7)  # 1.83s / 1.33s / 12s
+    try_emove_each(epoks[0], 'うずしお',      MCat.SPECIAL, PType.WATER, 20, 0.7)  # 1.00s / 1.33s / 7s
     # こうごうせい
 
     
-    print ('-----ジュカイン-----')
-    try_emove_each(epoks[1], 'ハードプラント', MCat.SPECIAL, PType.GRASS, 150, 1)
-    try_emove_each(epoks[1], 'リーフストーム', MCat.SPECIAL, PType.GRASS, 130, 1)
-    try_emove_each(epoks[1], 'リーフブレード', MCat.PHYSICAL, PType.GRASS, 90, 1)
-    try_emove_each(epoks[1], 'タネマシンガン', MCat.PHYSICAL, PType.GRASS, 75, 1)
-
-    print ('-----ブリガロン-----')
-    try_emove_each(epoks[2], 'ハードプラント', MCat.SPECIAL, PType.GRASS, 150, 1)
-    try_emove_each(epoks[2], 'ウッドハンマー', MCat.PHYSICAL, PType.GRASS, 120, 1)
-    try_emove_each(epoks[2], 'タネばくだん', MCat.PHYSICAL, PType.GRASS, 35, 1)
-    # ニードルガード
-
+    print ('-----ラグラージ-----')
+    try_emove_each(epoks[1], 'ハイドロカノン', MCat.SPECIAL, PType.WATER, 150, 0.7) # 2.5s / 0.83s / 20s
+    # アクアリング
+    try_emove_each(epoks[1], 'たきのぼり',    MCat.PHYSICAL, PType.WATER, 80, 0.7) # 1.17s / 1.13s / 8s
+    try_emove_each(epoks[1], 'だくりゅう',    MCat.SPECIAL, PType.WATER,  90, 0.7) # 1.33s / 2.67s / 8s
+    
+    print ('-----ゲッコウガ-----')
+    try_emove_each(epoks[2], 'ハイドロカノン', MCat.SPECIAL, PType.WATER, 150, 0.7) # 2.5s / 0.83s / 20s
+    # かげぶんしん
+    try_emove_each(epoks[2], 'ハイドロポンプ', MCat.SPECIAL, PType.WATER, 110, 0.7) # 2.33s / 2.00s / 12s
+    try_emove_each(epoks[2], 'みずしゅりけん', MCat.SPECIAL, PType.WATER, 75, 0.7)  # 0.67s / 1.17s / 3s
+    
 
 
 
